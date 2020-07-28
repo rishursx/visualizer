@@ -1,4 +1,4 @@
-React based app, visit rishursx.github.io/visualizer
+React based app, visit https://rishursx.github.io/visualizer
 
 
 
