@@ -1,9 +1,13 @@
 import React from "react";
 import "./SortingVisualizer.css";
+import getMergeSortAnimations from "../sortingAlgorithms/sortingAlgorithms";
 
 const minValue = 5;
 const maxValue = 700;
 const arraySize = 300;
+const animationSpeed = 10;
+const PRIMARY_COLOR = "aqua";
+const SECONDARY_COLOR = "red";
 
 export default class SortingVisualizer extends React.Component {
   constructor(props) {
@@ -29,6 +33,30 @@ export default class SortingVisualizer extends React.Component {
     this.setState({ array });
   }
 
+  mergeSort() {
+    const animations = getMergeSortAnimations(this.state.array);
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName("array-bar");
+      const isColorChange = i % 3 !== 2;
+      if (isColorChange) {
+        const [barOneIdx, barTwoIdx] = animations[i];
+        const barOneStyle = arrayBars[barOneIdx].style;
+        const barTwoStyle = arrayBars[barTwoIdx].style;
+        const color = i % 3 === 0 ? SECONDARY_COLOR : PRIMARY_COLOR;
+        setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * animationSpeed);
+      } else {
+        setTimeout(() => {
+          const [barOneIdx, newHeight] = animations[i];
+          const barOneStyle = arrayBars[barOneIdx].style;
+          barOneStyle.height = `${newHeight}px`;
+        }, i * animationSpeed);
+      }
+    }
+  }
+
   render() {
     const { array } = this.state;
     console.log(array);
@@ -42,6 +70,7 @@ export default class SortingVisualizer extends React.Component {
           ></div>
         ))}
         <button onClick={() => this.resetArray()}>Generate new array</button>
+        <button onClick={() => this.mergeSort()}>Merge Sort</button>
       </div>
     );
   }
