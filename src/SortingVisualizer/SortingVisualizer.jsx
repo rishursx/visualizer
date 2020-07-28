@@ -5,7 +5,7 @@ import getMergeSortAnimations from "../sortingAlgorithms/sortingAlgorithms";
 const minValue = 5;
 const maxValue = 700;
 const arraySize = 300;
-const animationSpeed = 10;
+const animationSpeed = 4;
 const PRIMARY_COLOR = "aqua";
 const SECONDARY_COLOR = "red";
 
