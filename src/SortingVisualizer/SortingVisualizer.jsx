@@ -5,12 +5,12 @@ import getSelectionSortAnimations from "../sortingAlgorithms/selectionSort";
 import getBubbleSortAnimations from "../sortingAlgorithms/bubbleSort";
 
 const minValue = 5;
-const maxValue = 700;
-const arraySize = 2;
-const animationSpeed = 1;
-const PRIMARY_COLOR = "aqua";
+const maxValue = 600;
+const arraySize = 150;
+const animationSpeed = 10;
+const PRIMARY_COLOR = "#997920";
 const SECONDARY_COLOR = "red";
-const BACKGROUND_COLOR = "blue";
+const BACKGROUND_COLOR = "#203B99";
 
 export default class SortingVisualizer extends React.Component {
   constructor(props) {
@@ -133,18 +133,22 @@ export default class SortingVisualizer extends React.Component {
     const { array } = this.state;
     console.log(array);
     return (
-      <div className="array-container">
-        {array.map((value, idx) => (
-          <div
-            className="array-bar"
-            key={idx}
-            style={{ height: `${value}px` }}
-          ></div>
-        ))}
-        <button onClick={() => this.resetArray()}>Generate new array</button>
-        <button onClick={() => this.mergeSort()}>Merge Sort</button>
-        <button onClick={() => this.selectionSort()}>Selection Sort</button>
-        <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+      <div className="window">
+        <div className="controls">
+          <button onClick={() => this.resetArray()}>Generate new array</button>
+          <button onClick={() => this.mergeSort()}>Merge Sort</button>
+          <button onClick={() => this.selectionSort()}>Selection Sort</button>
+          <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+        </div>
+        <div className="array-container">
+          {array.map((value, idx) => (
+            <div
+              className="array-bar"
+              key={idx}
+              style={{ height: `${value}px` }}
+            ></div>
+          ))}
+        </div>
       </div>
     );
   }
