@@ -1,4 +1,10 @@
-.array-container {
+.controls {
+  border-top: brown;
+  width: 100%;
+  background-color: bisque;
+}
+
+.Histograms {
   /* display: flex;
   justify-content: center; */
   /* align-self: center; */

@@ -1,3 +1,5 @@
+// using the algorithms by Clement as is
+
 export default function getMergeSortAnimations(array) {
   const animations = [];
   if (array.length <= 1) return array;
