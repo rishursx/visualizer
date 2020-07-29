@@ -6,9 +6,10 @@ import getSelectionSortAnimations from "../sortingAlgorithms/selectionSort";
 const minValue = 5;
 const maxValue = 700;
 const arraySize = 300;
-const animationSpeed = 1;
+const animationSpeed = 3;
 const PRIMARY_COLOR = "aqua";
 const SECONDARY_COLOR = "red";
+const BACKGROUND_COLOR = "blue";
 
 export default class SortingVisualizer extends React.Component {
   constructor(props) {
@@ -61,17 +62,33 @@ export default class SortingVisualizer extends React.Component {
   selectionSort() {
     const animations = getSelectionSortAnimations(this.state.array);
 
-    console.log(animations.length);
-    // return;
-
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.getElementsByClassName("array-bar");
-
-      setTimeout(() => {
-        const [barOneIdx, newHeight] = animations[i];
+      const isColored = i % 4;
+      if (isColored === 0) {
+        const [barOneIdx, barTwoIdx] = animations[i];
         const barOneStyle = arrayBars[barOneIdx].style;
-        barOneStyle.height = `${newHeight}px`;
-      }, i * animationSpeed);
+        const barTwoStyle = arrayBars[barTwoIdx].style;
+
+        setTimeout(() => {
+          barOneStyle.backgroundColor = SECONDARY_COLOR;
+          barTwoStyle.backgroundColor = SECONDARY_COLOR;
+        }, i * animationSpeed);
+      } else if (isColored === 1 || isColored === 2) {
+        setTimeout(() => {
+          const [barOneIdx, newHeight] = animations[i];
+          const barOneStyle = arrayBars[barOneIdx].style;
+          barOneStyle.height = `${newHeight}px`;
+        }, i * animationSpeed);
+      } else {
+        const [barOneIdx, barTwoIdx] = animations[i];
+        const barOneStyle = arrayBars[barOneIdx].style;
+        const barTwoStyle = arrayBars[barTwoIdx].style;
+        setTimeout(() => {
+          barOneStyle.backgroundColor = PRIMARY_COLOR;
+          barTwoStyle.backgroundColor = BACKGROUND_COLOR;
+        }, i * animationSpeed);
+      }
     }
   }
 

@@ -9,12 +9,16 @@ export default function getSelectionSortAnimations(array) {
 function selectionSortTool(mainArray, animations) {
   let i = 0,
     j = 0;
-  for (i = 0; i < mainArray.length; i++) {
+  for (i = 0; i < mainArray.length - 1; i++) {
     // let smol = 1000;
     for (j = i + 1; j < mainArray.length; j++) {
       if (mainArray[i] > mainArray[j]) {
+        animations.push([i, j]);
         animations.push([i, mainArray[j]]);
         animations.push([j, mainArray[i]]);
+        animations.push([i, j]);
+        // animations.push([i, mainArray[j]]);
+        // animations.push([j, mainArray[i]]);
         let temp = mainArray[i];
         mainArray[i] = mainArray[j];
         mainArray[j] = temp;
