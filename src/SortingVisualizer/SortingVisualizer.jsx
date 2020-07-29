@@ -5,10 +5,17 @@ import getSelectionSortAnimations from "../sortingAlgorithms/selectionSort";
 import getBubbleSortAnimations from "../sortingAlgorithms/bubbleSort";
 
 const minValue = 5;
+<<<<<<< HEAD
 const maxValue = 600;
 const arraySize = 150;
 const animationSpeed = 10;
 const PRIMARY_COLOR = "#997920";
+=======
+const maxValue = 700;
+const arraySize = 300;
+const animationSpeed = 1;
+const PRIMARY_COLOR = "aqua";
+>>>>>>> c2a2b78c10491c8a2eac4c304d38ae27fce4c1d9
 const SECONDARY_COLOR = "red";
 const BACKGROUND_COLOR = "#203B99";
 
