@@ -6,7 +6,7 @@ import getBubbleSortAnimations from "../sortingAlgorithms/bubbleSort";
 
 const minValue = 5;
 const maxValue = 700;
-const arraySize = 2;
+const arraySize = 300;
 const animationSpeed = 1;
 const PRIMARY_COLOR = "aqua";
 const SECONDARY_COLOR = "red";
