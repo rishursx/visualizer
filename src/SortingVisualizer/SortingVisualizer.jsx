@@ -2,11 +2,12 @@ import React from "react";
 import "./SortingVisualizer.css";
 import getMergeSortAnimations from "../sortingAlgorithms/mergeSort";
 import getSelectionSortAnimations from "../sortingAlgorithms/selectionSort";
+import getBubbleSortAnimations from "../sortingAlgorithms/bubbleSort";
 
 const minValue = 5;
 const maxValue = 700;
-const arraySize = 300;
-const animationSpeed = 3;
+const arraySize = 2;
+const animationSpeed = 1;
 const PRIMARY_COLOR = "aqua";
 const SECONDARY_COLOR = "red";
 const BACKGROUND_COLOR = "blue";
@@ -92,6 +93,42 @@ export default class SortingVisualizer extends React.Component {
     }
   }
 
+  bubbleSort() {
+    const animations = getBubbleSortAnimations(this.state.array);
+    console.log(animations);
+    // return;
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.getElementsByClassName("array-bar");
+      const [barOneIdx, barTwoProp, isIdx] = animations[i];
+
+      if (isIdx !== 1) {
+        const barOneStyle = arrayBars[barOneIdx].style;
+        const barTwoStyle = arrayBars[barTwoProp].style;
+
+        if (isIdx === 0) {
+          setTimeout(() => {
+            barOneStyle.backgroundColor = SECONDARY_COLOR;
+            barTwoStyle.backgroundColor = SECONDARY_COLOR;
+          }, i * animationSpeed);
+        }
+        if (isIdx === 2) {
+          setTimeout(() => {
+            barOneStyle.backgroundColor = BACKGROUND_COLOR;
+            barTwoStyle.backgroundColor = PRIMARY_COLOR;
+          }, i * animationSpeed);
+        }
+      } else {
+        setTimeout(() => {
+          const barOneStyle = arrayBars[barOneIdx].style;
+          barOneStyle.height = `${barTwoProp}px`;
+          barOneStyle.backgroundColor = PRIMARY_COLOR;
+        }, i * animationSpeed);
+      }
+    }
+    const bars = document.getElementsByClassName("array-bar");
+    bars[0].style.backgroundColor = "white";
+  }
+
   render() {
     const { array } = this.state;
     console.log(array);
@@ -106,7 +143,8 @@ export default class SortingVisualizer extends React.Component {
         ))}
         <button onClick={() => this.resetArray()}>Generate new array</button>
         <button onClick={() => this.mergeSort()}>Merge Sort</button>
-        <button onClick={() => this.selectionSort()}>SelectionSort</button>
+        <button onClick={() => this.selectionSort()}>Selection Sort</button>
+        <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
       </div>
     );
   }
